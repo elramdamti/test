@@ -1,41 +1,43 @@
 # Kaltura’s OTT Backend API Overview  
 
 Kaltura’s OTT Backend features hundreds of REST-based APIs that provide programmable access to every OTT service. With full access to the OTT Backend API, you can extend every feature and functionality of the Kaltura Platform integrate Kaltura’s solutions, services, and widgets seamlessly, creating a unified experience within your chosen environments.
+
 This site provides comprehensive documentation on Kaltura’s OTT Backend API, and is intended to developers who wish to use these APIs within their services. To gain a greater understanding of Kaltura’s OTT Video Platform, please review the [Introduction to Kaltura Platform]( https://corp.kaltura.com/content/video-platform-features) article.
 
 ## About Kaltura’s OTT Backend  
 
 The Kaltura OTT Backend platform exposes its Server API to applications by implementing a standard HTTP POST/GET url-encoded requests structure. Kaltura’s OTT Backend APIs are designed to follow REST principles; the APIs consist of service actions for querying, setting, updating and listing entities as well as for activating processes within Kaltura’s OTT platform. Service actions are grouped according to the entity type they are applied to, and provide all actions relevant to the specific entity.
+
 This API documentation provides specific information on:
-•	Kaltura services and their related actions
-•	Kaltura objects and their related properties
-•	Kaltura enumerated types and their values
+*	Kaltura services and their related actions
+*	Kaltura objects and their related properties
+*	Kaltura enumerated types and their values
 >Note: A prerequisite for using Kaltura’s OTT Backend APIs is obtaining Kaltura account identifiers such as Account ID and User ID.
 
 ## Terminology  
 Before you begin using Kaltura’s OTT Backend APIs, here are a few terms you should familiarize yourself with:
-•	OTT – Over The Top: Video transmitted via the Internet without an operator of multiple cable controlling or distributing the content.
-•	KS – Kaltura Session: A valid KS must be passed with each call to Kaltura’s API. The session context embedded into a KS identifies your application, content access permissions, and API access permissions (it also contains other internal session data). This information is securely encrypted and hashed, preventing unauthorized manipulation of the session context.
-•	EPG – Electronic Program Guide: An application used with digital set-top boxes and newer television sets to list current and scheduled programs that are or will be available on each channel and a short summary or commentary for each program. EPG is the electronic equivalent of a printed television program guide.
-•	VOD – Video On Demand: Allows end users to watch video content whenever the user chooses.
-•	Asset: This is any Kaltura EPG program or VOD content.
-•	Channel: A set of Kaltura assets, selected manually or dynamically, using predefined filters.
-•	EPG Channel: Equivalent to a TV channel, this represents a set of EPG programs related to the same playable source on a single timeline.
-•	Group: A Kaltura OTT account owned by an operator.
-•	Household: A users account, which must be associated with a group, and is owned by the operator’s customers.
-•	OTT User: A specific user account that must be associated with household account.
+*	OTT – Over The Top: Video transmitted via the Internet without an operator of multiple cable controlling or distributing the content.
+*	KS – Kaltura Session: A valid KS must be passed with each call to Kaltura’s API. The session context embedded into a KS identifies your application, content access permissions, and API access permissions (it also contains other internal session data). This information is securely encrypted and hashed, preventing unauthorized manipulation of the session context.
+*	EPG – Electronic Program Guide: An application used with digital set-top boxes and newer television sets to list current and scheduled programs that are or will be available on each channel and a short summary or commentary for each program. EPG is the electronic equivalent of a printed television program guide.
+*	VOD – Video On Demand: Allows end users to watch video content whenever the user chooses.
+*	Asset: This is any Kaltura EPG program or VOD content.
+*	Channel: A set of Kaltura assets, selected manually or dynamically, using predefined filters.
+*	EPG Channel: Equivalent to a TV channel, this represents a set of EPG programs related to the same playable source on a single timeline.
+*	Group: A Kaltura OTT account owned by an operator.
+*	Household: A users account, which must be associated with a group, and is owned by the operator’s customers.
+*	OTT User: A specific user account that must be associated with household account.
 
 ## Using Kaltura’s OTT Backend REST APIs
 The following are the general characteristics of any REST API:
-•	Client – Server model.
-•	Stateless – The session information shouldn’t be save on the server side.
-•	Cacheable – The responses can be cached using standard HTTP headers.
-•	Layered – The client cannot tell whether it is connected to an end server or to an intermediary server.
-•	Uniform interface 
-o	Identification of resources – Resources represented by their exposed data, the server may have different representation of that data.
-o	Manipulation of resources through representations – The client holds enough metadata to modify or delete the resource.
-o	Self-descriptive messages – The message includes enough information to describe how to process it.
-o	Hypermedia as the engine of application state – The client should be able to use URLs dynamically to discover all actions and resources.
+*	Client – Server model.
+*	Stateless – The session information shouldn’t be save on the server side.
+*	Cacheable – The responses can be cached using standard HTTP headers.
+*	Layered – The client cannot tell whether it is connected to an end server or to an intermediary server.
+*	Uniform interface 
+  *	Identification of resources – Resources represented by their exposed data, the server may have different representation of that data.
+  *	Manipulation of resources through representations – The client holds enough metadata to modify or delete the resource.
+  *	Self-descriptive messages – The message includes enough information to describe how to process it.
+  *	Hypermedia as the engine of application state – The client should be able to use URLs dynamically to discover all actions and resources.
 
 ### REST API Request Formats  
 
@@ -86,9 +88,9 @@ An **action** represents read and write operations (CRUD) that expects known arg
 #### Objects  
 
 All objects extend from the KalturaObjectBase (note that the name may be different in different coding languages).
-•	The client may use any object that extends the expected object in any request.
-•	If the expected object is abstract, only extended objects may be used.
-•	The server may return any object that extends the expected object in any response.
+*	The client may use any object that extends the expected object in any request.
+*	If the expected object is abstract, only extended objects may be used.
+*	The server may return any object that extends the expected object in any response.
 
 #### Multi-Requests  
 
@@ -131,20 +133,20 @@ http://www.kaltura.com/api_v3/service/multirequest
 #### Global Parameters
 
 The Kaltura Ott Backend API utilizes the following global parameters:
-•	**clientTag** – Free text, used to identify the application in the logs, using the application name, client library coding language and application version is recommended.
-•	**apiVersion** – Mandatory since Storm version, used to identify the expected server compatibility version, sent correctly and automatically by all client libraries.
-•	**ks** – Kaltura session, supports also deprecated TVP-API access-token, used to apply roles and permissions.
-•	**userId** – Replaces the operating user for all actions, enables privileged user to impersonate as a different user.
-•	**language** – Used to return content in specific language.
+*	**clientTag** – Free text, used to identify the application in the logs, using the application name, client library coding language and application version is recommended.
+*	**apiVersion** – Mandatory since Storm version, used to identify the expected server compatibility version, sent correctly and automatically by all client libraries.
+*	**ks** – Kaltura session, supports also deprecated TVP-API access-token, used to apply roles and permissions.
+*	**userId** – Replaces the operating user for all actions, enables privileged user to impersonate as a different user.
+*	**language** – Used to return content in specific language.
 
 ### Roles and Permissions  
 
 #### Permission-item  
-•	**Action** – Allows you to use an API action. All actions are forbidden by default.
-•	**Object Property** – Allows you to read, insert or update of a property. All properties are permitted unless specified otherwise.
-•	**Action Argument** – Allows you to use an action argument. All arguments are permitted unless specified otherwise.
-•	**Permission** – Defines a set of permission items.
-•	**Role (anonymous, user, master, operator, manager, administrator, custom) ** – Defines a set of allowed permissions.
+*	**Action** – Allows you to use an API action. All actions are forbidden by default.
+*	**Object Property** – Allows you to read, insert or update of a property. All properties are permitted unless specified otherwise.
+*	**Action Argument** – Allows you to use an action argument. All arguments are permitted unless specified otherwise.
+*	**Permission** – Defines a set of permission items.
+*	**Role (anonymous, user, master, operator, manager, administrator, custom) ** – Defines a set of allowed permissions.
 
 ### Error Handling  
 
