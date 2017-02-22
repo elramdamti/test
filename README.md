@@ -41,7 +41,7 @@ o	Hypermedia as the engine of application state – The client should be able to
 
 Although both form data and a Kaltura proprietary requests are supported, JSON is the recommended request format, as per the example below:
 http://www.kaltura.com/api_v3/service/asset/action/get
-{% highlight c %}
+```json
  {
   "apiVersion": "3.6.1579.29065",
   "assetReferenceType": "media",
@@ -51,13 +51,12 @@ http://www.kaltura.com/api_v3/service/asset/action/get
   "kalsig": "ef6ddd187091e42003f2c59dbbcdaf4f",
   "ks": "MGVjNGY4YzBkM2ZhYmIxYTA4Y2VhYjYwZGM4NWQ5NzczNzcxY2JmYXwxODY7MTg2OzE0ODQxNDAwNzE7MDs2MzYxOTc0MzQ3MTA0NDI3NzU7MDAwMDA3MTcyMkBnbWFpbC5jb20udGVzdDs7"
 }
-{% endhighlight %}
+```
 
 ### REST API Response Formats  
 
 The REST APIs use the following response formats:
-{% highlight c %}
-JSON (format = 1, Accept: application/json)
+```json
 {
   "executionTime": 0.900651,
   "result": {
@@ -65,10 +64,9 @@ JSON (format = 1, Accept: application/json)
     "ks": " MGVjNGY4YzBkM2ZhYmIxYTA4Y2VhYjYwZGM4NWQ5NzczNzcxY2JmYXwxODY7MTg2OzE0ODQxNDAwNzE7MDs2MzYxOTc0MzQ3MTA0NDI3NzU7MDAwMDA3MTcyMkBnbWFpbC5jb20udGVzdDs7"
   }
 }
-{% endhighlight %}
+```
 
-{% highlight c %}
-XML (format = 2 , Accept: text/xml)
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <xml>
     <executionTime>0.6486599</executionTime>
@@ -77,7 +75,7 @@ XML (format = 2 , Accept: text/xml)
         <ks> MGVjNGY4YzBkM2ZhYmIxYTA4Y2VhYjYwZGM4NWQ5NzczNzcxY2JmYXwxODY7MTg2OzE0ODQxNDAwNzE7MDs2MzYxOTc0MzQ3MTA0NDI3NzU7MDAwMDA3MTcyMkBnbWFpbC5jb20udGVzdDs7</ks>
     </result>
 </xml>
-{% endhighlight %}
+```
 
 ### API Services and Actions  
 
@@ -96,7 +94,7 @@ All objects extend from the KalturaObjectBase (note that the name may be differe
 
 Multi-requests enable sending multiple applicative requests in a single HTTP request.
 http://www.kaltura.com/api_v3/service/multirequest 
-{% highlight c %}
+```json
 {
   "apiVersion": "3.6.1579.29065",
   "ks": "MGVjNGY4YzBkM2ZhYmIxYTA4Y2VhYjYwZGM4NWQ5NzczNzcxY2JmYXwxODY7MTg2OzE0ODQxNDAwNzE7MDs2MzYxOTc0MzQ3MTA0NDI3NzU7MDAwMDA3MTcyMkBnbWFpbC5jb20udGVzdDs7",
@@ -109,11 +107,11 @@ http://www.kaltura.com/api_v3/service/multirequest
     "action": "get"
   }
 }
-{% endhighlight %}
+```
 
 This enables using responses from one applicative request in another applicative request in the same HTTP request.
 http://www.kaltura.com/api_v3/service/multirequest
-{% highlight c %}
+```json
  {
   "apiVersion": "3.6.1579.29065",
   "ks": "MGVjNGY4YzBkM2ZhYmIxYTA4Y2VhYjYwZGM4NWQ5NzczNzcxY2JmYXwxODY7MTg2OzE0ODQxNDAwNzE7MDs2MzYxOTc0MzQ3MTA0NDI3NzU7MDAwMDA3MTcyMkBnbWFpbC5jb20udGVzdDs7",
@@ -128,7 +126,7 @@ http://www.kaltura.com/api_v3/service/multirequest
     "ks": "{1:result:ks}"
   }
 }
-{% endhighlight %}
+```
 
 #### Global Parameters
 
@@ -156,7 +154,7 @@ Errors are returned in the serialized response (JSON or XML) and automatically i
 #### Error Response Examples  
 
 **XML:**
-{% highlight c %}
+```json
 <?xml version="1.0" encoding="utf-8"?>
 <xml>
     <executionTime>0.0011062</executionTime>
@@ -168,10 +166,10 @@ Errors are returned in the serialized response (JSON or XML) and automatically i
         </error>
     </result>
 </xml>
-{% endhighlight %}
+```
 
 **JSON:**
-{% highlight c %}
+```json
 {
   "executionTime": 0.0007125,
   "result": {
@@ -182,10 +180,10 @@ Errors are returned in the serialized response (JSON or XML) and automatically i
     }
   }
 }
-{% endhighlight %}
+```
 
 **Multi-request:**
-{% highlight c %}
+```json
 {
   "executionTime": 3.40099,
   "result": [
@@ -203,7 +201,7 @@ Errors are returned in the serialized response (JSON or XML) and automatically i
     }
   ]
 }
-{% endhighlight %}
+```
 
 ## Using the TVP-API Security Model  
 
@@ -211,7 +209,7 @@ TVP-API works with refresh-token, a long-lived token that is created upon login,
 Requests to TVP-API should be accompanied with init-object that contains the access-token.
 Requests to the OTT API can be accompanied by a ks property; this property will usually contain a KS as returned from the OTT API login, but it may also contain an access-token instead. When the access-token is used instead of KS, no init-object is needed; for example:
 http://www.kaltura.com/api_v3/service/asset/action/get
-{% highlight c %}
+```json
  {
   "apiVersion": "3.6.1579.29065",
   "assetReferenceType": "media",
@@ -221,7 +219,7 @@ http://www.kaltura.com/api_v3/service/asset/action/get
   "kalsig": "ef6ddd187091e42003f2c59dbbcdaf4f",
   "ks": "MGVjNGY4YzBkM2ZhYmIxYTA4Y2VhYjYwZGM4NWQ5NzczNzcxY2JmYXwxODY7MTg2OzE0ODQxNDAwNzE7MDs2MzYxOTc0MzQ3MTA0NDI3NzU7MDAwMDA3MTcyMkBnbWFpbC5jb20udGVzdDs7"
 }
-{% endhighlight %}
+```
 
 ## Additional Help and Support  
 
